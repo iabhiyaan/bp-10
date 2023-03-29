@@ -6,4 +6,4 @@
 - `php artisan key:generate`
 - setup database credentials like db_name, db_user, passwords etc...
 - `php artisan migrate:fresh --seed`
-- `php artisan serve`****
+- `php artisan serve`
