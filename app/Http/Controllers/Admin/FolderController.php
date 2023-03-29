@@ -1,0 +1,54 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class FolderController extends Controller
+{
+    public function index()
+    {
+        return view('admin.folder.list', [ 'details' => [] ]);
+    }
+
+    public function store(Request $request)
+    {
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function create()
+    {
+        return view('admin.folder.create', [ 'data' => [] ]);
+    }
+
+    /**
+     * Show the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function show()
+    {
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function edit()
+    {
+    }
+
+    public function update(Request $request)
+    {
+    }
+
+    public function destroy()
+    {
+    }
+
+}
