@@ -26,7 +26,7 @@ Route::group([], function () {
     Route::post('update-password', [PasswordResetController::class, 'updatePassword'])->name('updatePassword');
 });
 
-Route::group(['prefix' => 'admin',], function () {
+Route::group(['prefix' => 'admin', 'middleware' => [ 'auth:super-admin','role:system_admin',]], function () {
     Route::get('logout', [LoginController::class, 'admin__logout'])->name('admin.logout');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('folder', FolderController::class);

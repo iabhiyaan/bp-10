@@ -3,10 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Folder;
 use Illuminate\Http\Request;
 
 class FolderController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('permission:view-folders')->only('index');
+        $this->middleware('permission:alter-folders')->only('edit', 'update');
+        $this->middleware('permission:delete-folders')->only('destroy');
+    }
+
     public function index()
     {
         return view('admin.folder.list', [ 'details' => [] ]);
@@ -22,6 +31,8 @@ class FolderController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Folder::class);
+
         return view('admin.folder.create', [ 'data' => [] ]);
     }
 

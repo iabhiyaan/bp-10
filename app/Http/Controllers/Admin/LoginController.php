@@ -30,14 +30,11 @@ class LoginController extends Controller
          return back()->with('message', 'Invalid Username\Password');
       }
 
-      if ($user->role == 'admin' && $user->publish == 0) {
-         return back()->with('message', "Your account is inactive!<br> Please contact Team.");
-      }
-
-      if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+      if (Auth::guard('super-admin')->attempt(['email' => $request['email'], 'password' => $request['password']])) {
          return redirect()->route('dashboard');
       } else {
-         return back()->withInput()->withErrors(['email' => 'something is wrong!']);
+          \Session::flash('email', 'something is wrong!');
+          return back();
       }
    }
    public function admin__logout()

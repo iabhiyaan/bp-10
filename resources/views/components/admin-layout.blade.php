@@ -2,21 +2,21 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Admin Panel</title>
     <meta name="description"
-        content="Check out all the features of the Start admin panel. A large number of templates, components and widgets." />
+          content="Check out all the features of the Start admin panel. A large number of templates, components and widgets."/>
     <meta name="keywords"
-        content="Start, bootstrap, bootstrap 5, admin themes, free admin themes, bootstrap admin, bootstrap dashboard, html admin theme, html template" />
-    <link rel="canonical" href="https://preview.keenthemes.com/start" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="/assets/admin/media/logos/favicon.ico" />
+          content="Start, bootstrap, bootstrap 5, admin themes, free admin themes, bootstrap admin, bootstrap dashboard, html admin theme, html template"/>
+    <link rel="canonical" href="https://preview.keenthemes.com/start"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="shortcut icon" href="/assets/admin/media/logos/favicon.ico"/>
     <!--begin::Fonts-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="/assets/admin/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/admin/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/admin/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/admin/css/style.bundle.css" rel="stylesheet" type="text/css"/>
     <!--end::Global Stylesheets Bundle-->
     {{ $styles ?? null }}
     @stack('styles')
@@ -54,34 +54,40 @@
                              data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo"
                              data-kt-scroll-wrappers="#kt_aside_wordspace" data-kt-scroll-offset="10px">
                             <div class="menu-wrapper menu-column menu-fit">
-                                <div class="menu-item">
-                                    <a class="menu-link py-2" href="{{ route('dashboard') }}">
-                                        <span class="menu-title">Dashboard</span>
-                                    </a>
-                                </div>
+                                @can('view-dashboard')
+                                    <div class="menu-item">
+                                        <a class="menu-link py-2" href="{{ route('dashboard') }}">
+                                            <span class="menu-title">Dashboard</span>
+                                        </a>
+                                    </div>
+                                @endcan
                                 <div data-kt-menu-trigger="click" class="menu-item">
                                         <span class="menu-link py-2">
                                             <span class="menu-title">Folders</span>
                                             <span class="menu-arrow"></span>
                                         </span>
                                     <div class="menu-sub menu-sub-accordion">
-                                        <div class="menu-item">
-                                            <a class="menu-link py-2" href="{{ route('folder.index') }}">
+                                        @can('alter-folders')
+                                            <div class="menu-item">
+                                                <a class="menu-link py-2" href="{{ route('folder.index') }}">
                                                     <span class="menu-bullet">
                                                         <span class="bullet bullet-dot"></span>
                                                     </span>
-                                                <span class="menu-title">All Lists</span>
-                                            </a>
-                                        </div>
-                                        <div class="menu-item">
-                                            <a class="menu-link py-2" href="{{ route('folder.create')  }}">
-                                                    <span class="menu-bullet">
-                                                        <span class="bullet bullet-dot"></span>
-                                                    </span>
-                                                <span class="menu-title">Add New</span>
-                                            </a>
-                                        </div>
+                                                    <span class="menu-title">All Lists</span>
+                                                </a>
+                                            </div>
+                                        @endcan
 
+                                        @can('delete-folders')
+                                            <div class="menu-item">
+                                                <a class="menu-link py-2" href="{{ route('folder.create')  }}">
+                                                    <span class="menu-bullet">
+                                                        <span class="bullet bullet-dot"></span>
+                                                    </span>
+                                                    <span class="menu-title">Add New</span>
+                                                </a>
+                                            </div>
+                                        @endcan
                                     </div>
                                 </div>
 
@@ -253,10 +259,10 @@
                     <!--begin::Copyright-->
                     <div class="text-dark order-2 order-md-1">
                         <span class="text-muted fw-bold me-2">{{ date('Y') }}
-{{--                            ©--}}
+                            {{--                            ©--}}
                         </span>
-{{--                        <a href="http://abhiyanshrestha.com.np/" target="_blank"--}}
-{{--                           class="text-gray-800 text-hover-primary">Abhiyan Shrestha</a>--}}
+                        {{--                        <a href="http://abhiyanshrestha.com.np/" target="_blank"--}}
+                        {{--                           class="text-gray-800 text-hover-primary">Abhiyan Shrestha</a>--}}
                     </div>
                     <!--end::Copyright-->
                 </div>
@@ -301,16 +307,16 @@
 <!--end::Javascript-->
 {{ $scripts ?? null }}
 @stack('scripts')
-    <script>
-        $('#kt_aside_toggler').click(function() {
-           $('div#kt_aside').addClass('translateInWindow').removeClass('translateFromWindow')
-           $('.aside-primary-disabled.aside-secondary-enabled.aside-fixed .wrapper').removeClass('pl-0')
-        })
-        $('.dismiss__sidebar').click(function() {
-           $('div#kt_aside').addClass('translateFromWindow').removeClass('translateInWindow')
-           $('.aside-primary-disabled.aside-secondary-enabled.aside-fixed .wrapper').toggleClass('pl-0')
-        })
-    </script>
+<script>
+    $('#kt_aside_toggler').click(function () {
+        $('div#kt_aside').addClass('translateInWindow').removeClass('translateFromWindow')
+        $('.aside-primary-disabled.aside-secondary-enabled.aside-fixed .wrapper').removeClass('pl-0')
+    })
+    $('.dismiss__sidebar').click(function () {
+        $('div#kt_aside').addClass('translateFromWindow').removeClass('translateInWindow')
+        $('.aside-primary-disabled.aside-secondary-enabled.aside-fixed .wrapper').toggleClass('pl-0')
+    })
+</script>
 </body>
 
 </html>
