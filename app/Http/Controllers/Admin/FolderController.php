@@ -11,14 +11,14 @@ class FolderController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:view-folders')->only('index');
-        $this->middleware('permission:alter-folders')->only('edit', 'update');
-        $this->middleware('permission:delete-folders')->only('destroy');
+        $this->middleware('permission:' . permissionConstant()::FOLDERS['view-folders'])->only('index');
+        $this->middleware('permission:' . permissionConstant()::FOLDERS['alter-folders'])->only('edit', 'update');
+        $this->middleware('permission:' . permissionConstant()::FOLDERS['delete-folders'])->only('destroy');
     }
 
     public function index()
     {
-        return view('admin.folder.list', [ 'details' => [] ]);
+        return view('admin.folder.list', ['details' => []]);
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class FolderController extends Controller
     {
         $this->authorize('create', Folder::class);
 
-        return view('admin.folder.create', [ 'data' => [] ]);
+        return view('admin.folder.create', ['data' => []]);
     }
 
     /**
@@ -61,5 +61,4 @@ class FolderController extends Controller
     public function destroy()
     {
     }
-
 }
