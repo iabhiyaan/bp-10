@@ -19,4 +19,10 @@ class PermissionConstant
         'alter-folders' => 'alter-folders',
         'delete-folders' => 'delete-folders',
     ];
+
+    const ROLES = [
+        'view-roles' => 'view-roles',
+        'alter-roles' => 'alter-roles',
+        'delete-roles' => 'delete-roles',
+    ];
 }

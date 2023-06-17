@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FolderController;
 use App\Http\Controllers\Admin\PasswordResetController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', function () {
@@ -30,5 +31,6 @@ Route::group(['prefix' => 'admin', 'middleware' => [ 'auth:super-admin','role:sy
     Route::get('logout', [LoginController::class, 'admin__logout'])->name('admin.logout');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('folder', FolderController::class);
+    Route::resource('roles', RoleController::class);
 });
 
