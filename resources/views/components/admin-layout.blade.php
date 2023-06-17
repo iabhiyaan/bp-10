@@ -54,7 +54,7 @@
                              data-kt-scroll-height="auto" data-kt-scroll-dependencies="#kt_aside_logo"
                              data-kt-scroll-wrappers="#kt_aside_wordspace" data-kt-scroll-offset="10px">
                             <div class="menu-wrapper menu-column menu-fit">
-                                @can('view-dashboard')
+                                @can(permissionConstant()::DASHBOARD['view-dashboard'])
                                     <div class="menu-item">
                                         <a class="menu-link py-2" href="{{ route('dashboard') }}">
                                             <span class="menu-title">Dashboard</span>
@@ -67,7 +67,7 @@
                                             <span class="menu-arrow"></span>
                                         </span>
                                     <div class="menu-sub menu-sub-accordion">
-                                        @can('alter-folders')
+                                        @can(permissionConstant()::FOLDERS['alter-folders'])
                                             <div class="menu-item">
                                                 <a class="menu-link py-2" href="{{ route('folder.index') }}">
                                                     <span class="menu-bullet">
@@ -78,7 +78,7 @@
                                             </div>
                                         @endcan
 
-                                        @can('delete-folders')
+                                        @can(permissionConstant()::FOLDERS['alter-folders'])
                                             <div class="menu-item">
                                                 <a class="menu-link py-2" href="{{ route('folder.create')  }}">
                                                     <span class="menu-bullet">

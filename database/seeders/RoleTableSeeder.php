@@ -2,10 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Constants\PermissionConstant;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Support\Str;
+
+use function App\permissionConstant;
 
 class RoleTableSeeder extends Seeder
 {
@@ -24,26 +27,26 @@ class RoleTableSeeder extends Seeder
 
         $permissions = [
             'dashboard' => [
-                'view-dashboard',
+                permissionConstant()::DASHBOARD['view-dashboard']
             ],
 
             'users' => [
-                'view-users',
-                'alter-users',
-                'delete-users',
+                permissionConstant()::USERS['view-users'],
+                permissionConstant()::USERS['alter-users'],
+                permissionConstant()::USERS['delete-users'],
             ],
 
             'folders' => [
-                'view-folders',
-                'alter-folders',
-                'delete-folders',
+                permissionConstant()::FOLDERS['view-folders'],
+                permissionConstant()::FOLDERS['alter-folders'],
+                permissionConstant()::FOLDERS['delete-folders'],
             ]
         ];
 
         $allperms = collect([]);
 
-        foreach ($permissions as $key => $data) {
-            foreach ($data as $permission) {
+        foreach ($permissions as $key => $permissionArr) {
+            foreach ($permissionArr as $permission) {
                 $perm = Permission::updateOrCreate([
                     'name' => $permission,
                     'guard_name' => $guard_name,
