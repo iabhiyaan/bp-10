@@ -1,8 +1,8 @@
 <x-admin-layout title="Edit User">
     <x-error-message />
     <form action="{{ route('users.update', $user->id) }}" method="POST">
-        @method('PUT')
         @csrf
+        @method('PUT')
         <div class="py-5">
             <div class="rounded border p-10">
 

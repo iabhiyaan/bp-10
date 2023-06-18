@@ -47,6 +47,7 @@ class UserController extends Controller
 
         $formData = $request->except(['token', 'role', 'password_confirmation', 'password']);
         $formData['password'] = bcrypt($request->password);
+        $formData['publish'] = 1;
 
         $user = User::create($formData);
         $user->assignRole($request->role);
@@ -84,6 +85,7 @@ class UserController extends Controller
         ]);
 
         $formData = $request->except(['token', 'role', 'password_confirmation', 'password']);
+        $formData['publish'] = 1;
 
         $user->syncRoles([$request->role]);
         $user->update($formData);
