@@ -170,8 +170,8 @@
                                             </span>
                                         </div>
                                         <div class="">
-                                            <span class="text-white fw-bolder fs-4">Hello, Abhiyan</span>
-                                            <span class="text-white fw-bold fs-7 d-block">Admin</span>
+                                            <span class="text-white fw-bolder fs-4">Hello, {{ auth()->user()->name }}</span>
+                                            <span class="text-white fw-bold fs-7 d-block">{{ auth()->user()->roles->pluck('name')[0] ?? 'N/a' }}</span>
                                         </div>
                                     </div>
                                     <!--begin::Row-->
