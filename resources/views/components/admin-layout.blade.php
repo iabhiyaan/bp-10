@@ -61,14 +61,19 @@
                                         </div>
                                     @endcan
 
-                                    @can(permissionConstant()::FOLDERS['view-folders'])
-                                        <x-expandable-nav-item menu-title="Folders" :view-role="permissionConstant()::FOLDERS['view-folders']" :alter-role="permissionConstant()::FOLDERS['alter-folders']"
-                                            :list-route="route('folder.index')" :create-route="route('folder.create')"></x-expandable-nav-item>
+                                    @can(permissionConstant()::USERS['view-users'])
+                                        <x-expandable-nav-item menu-title="Users" :view-role="permissionConstant()::USERS['view-users']" :alter-role="permissionConstant()::USERS['alter-users']"
+                                            :list-route="route('users.index')" :create-route="route('users.create')"></x-expandable-nav-item>
                                     @endcan
 
                                     @can(permissionConstant()::ROLES['view-roles'])
                                         <x-expandable-nav-item menu-title="Roles" :view-role="permissionConstant()::ROLES['view-roles']" :alter-role="permissionConstant()::ROLES['alter-roles']"
                                             :list-route="route('roles.index')" :create-route="route('roles.create')"></x-expandable-nav-item>
+                                    @endcan
+
+                                    @can(permissionConstant()::FOLDERS['view-folders'])
+                                        <x-expandable-nav-item menu-title="Folders" :view-role="permissionConstant()::FOLDERS['view-folders']" :alter-role="permissionConstant()::FOLDERS['alter-folders']"
+                                            :list-route="route('folder.index')" :create-route="route('folder.create')"></x-expandable-nav-item>
                                     @endcan
 
                                 </div>
@@ -220,7 +225,7 @@
                 <!--end::Header-->
                 <!--begin::Main-->
                 <div class="container d-flex flex-column flex-column-fluid">
-                    @if(session('successMessage'))
+                    @if (session('successMessage'))
                         <x-alert type="success" :message="session('successMessage')"></x-alert>
                     @endif
                     <!--begin::toolbar-->

@@ -1,9 +1,9 @@
-<x-admin-layout title="All Roles">
+<x-admin-layout title="All Users">
     <div class="card m-3 fade-in-up">
         <div class="card-body">
             <div class="ibox-head">
                 <div class="text-right">
-                    <a class="btn btn-info btn-md" href="{{ route('roles.create') }}">Add Role</a>
+                    <a class="btn btn-info btn-md" href="{{ route('users.create') }}">Add User</a>
                 </div>
             </div>
 
@@ -14,7 +14,8 @@
                         <tr class="fw-bold fs-6 text-gray-800 border-bottom border-gray-200">
                             <th>SN</th>
                             <th>Name</th>
-                            <th>Display Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -26,19 +27,22 @@
                                     {{ $data->name }}
                                 </td>
                                 <td>
-                                    {{ $data->display_name ?? 'N/A' }}
+                                    {{ $data->email ?? 'N/A' }}
+                                </td>
+                                <td>
+                                    {{ $data->roles->pluck('name')[0] ?? 'N/A' }}
                                 </td>
 
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ route('roles.edit', $data->id) }}"
+                                        <a href="{{ route('users.edit', $data->id) }}"
                                             class="btn me-2 btn-icon btn-success">Edit</a>
-                                        <form action="{{ route('roles.destroy', $data->id) }}" method="post">
+                                        <form action="{{ route('users.destroy', $data->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button style="padding-right: 30px; padding-left: 30px;"
                                                 class="btn btn-danger btn-icon" type="submit" name="button"
-                                                onclick="return confirm('Are you sure you want to delete this role?')">
+                                                onclick="return confirm('Are you sure you want to delete this user?')">
                                                 Delete
                                             </button>
                                         </form>
