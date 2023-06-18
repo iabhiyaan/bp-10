@@ -31,7 +31,7 @@
 
                                 <td>
                                     <div class="d-flex">
-                                        <a href="{{ route('folder.edit', $data->id) }}"
+                                        <a href="{{ route('roles.edit', $data->id) }}"
                                             class="btn me-2 btn-icon btn-success">Edit</a>
                                         <form action="{{ route('roles.destroy', $data->id) }}" method="post">
                                             @csrf

@@ -51,8 +51,7 @@ class RoleController extends Controller
 
         $role->givePermissionTo($request->input('permissions'));
 
-        return redirect()->route('roles.index')->with('successMessage','Role created successfully');
-
+        return redirect()->route('roles.index')->with('successMessage', 'Role created successfully');
     }
 
     /**
@@ -66,17 +65,34 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        //
+        $role->load('permissions');
+        $permissionGroups = Permission::all()->groupBy('group');
+
+        return view('admin.roles.edit', compact('role', 'permissionGroups'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:100'],
+            'display_name' => ['required', 'string', 'max: 100'],
+            'permissions' => ['required', 'array'],
+            'permissions.*' => ['exists:permissions,name']
+        ]);
+
+        $formData = $request->except(['_token', 'permissions']);
+        $formData['guard_name'] = 'super-admin';
+
+        $role->syncPermissions($request->input('permissions'));
+
+        $role->update($formData);
+
+        return redirect()->route('roles.index')->with('successMessage', 'Role updated successfully');
     }
 
     /**
@@ -85,6 +101,6 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
-        return redirect()->route('roles.index')->with('successMessage','Role deleted successfully');
+        return redirect()->route('roles.index')->with('successMessage', 'Role deleted successfully');
     }
 }

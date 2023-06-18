@@ -1,18 +1,19 @@
-<x-admin-layout title="Create Role">
+<x-admin-layout title="Edit Role">
     <x-error-message />
-    <form action="{{ route('roles.store') }}" method="POST">
+    <form action="{{ route('roles.update', $role->id) }}" method="POST">
+        @method('PUT')
         @csrf
         <div class="py-5">
             <div class="rounded border p-10">
 
                 <div class="mb-10">
                     <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" />
+                    <input type="text" class="form-control" name="name" value="{{ $role->name }}" />
                 </div>
 
                 <div class="mb-10">
                     <label class="form-label">Display Name</label>
-                    <input type="text" class="form-control" name="display_name" value="{{ old('display_name') }}" />
+                    <input type="text" class="form-control" name="display_name" value="{{ $role->display_name }}" />
                 </div>
 
                 <div class="mb-10">
@@ -22,8 +23,13 @@
                         @forelse ($permissionGroups as $key => $permissions)
                             <optgroup label="{{ $key }}">
                                 @forelse ($permissions as $permission)
-                                    <option value="{{ $permission->name }}">
-                                        {{ \Illuminate\Support\Str::replace('-', ' ', $permission->name) }}</option>
+                                    @php
+                                        $selected = $role->permissions->pluck('name')->contains($permission->name);
+                                        $permissionName = \Illuminate\Support\Str::replace('-', ' ', $permission->name);
+                                    @endphp
+                                    <option value="{{ $permission->name }}" {{ $selected ? 'selected' : '' }}>
+                                        {{ $permissionName }}
+                                    </option>
                                 @empty
                                 @endforelse
                             </optgroup>
