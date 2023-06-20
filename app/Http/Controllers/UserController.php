@@ -20,7 +20,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        $details = User::with('roles')->get();
+        $perPage = request()->query('perPage') ?? 10;
+        $searchUser = request()->query('searchUser');
+
+        $userQ = User::with('roles')->where('name', 'LIKE', "%{$searchUser}%");
+
+        if ($perPage === 0) {
+            $details = $userQ->get();
+        } else {
+            $details = $userQ->paginate($perPage);
+        }
+
         return view('admin.users.list', compact('details'));
     }
 

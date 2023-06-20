@@ -1,10 +1,46 @@
 <x-admin-layout title="All Users">
+    <x-slot name="scripts">
+        <script>
+            function submitPaginationForm() {
+                $('#filterForm').submit()
+            }
+        </script>
+    </x-slot>
     <div class="card m-3 fade-in-up">
         <div class="card-body">
             <div class="ibox-head">
-                <div class="text-right">
-                    <a class="btn btn-info btn-md" href="{{ route('users.create') }}">Add User</a>
-                </div>
+                <form action="{{ route('users.index') }}" method="GET" id="filterForm">
+                    @if (request()->query('searchUser'))
+                        <div class="mb-3" id="search-results-query-container">
+                            Search Results for <span
+                                id="search-results-query">"{{ request()->query('searchUser') }}"</span>
+                        </div>
+                    @endif
+                    <div class="row text-right">
+                        <div class="col-md-2">
+                            <div class="d-flex align-items-center gap-10">
+                                <div>
+                                    Entries:
+                                </div>
+                                <div>
+                                    <select name="perPage" id="perPage" class="form-control"
+                                        onchange="submitPaginationForm()">
+                                        @for ($i = 0; $i <= 100; $i += 5)
+                                            <option {{ request()->query('perPage') == $i ? 'selected' : '' }} value="{{ $i }}">{{ $i === 0 ? 'All' : $i }}</option>
+                                        @endfor
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" name="searchUser" placeholder="Search User" class="form-control" />
+                        </div>
+                        <div class="col">
+                            <a class="btn btn-info btn-md" href="{{ route('users.create') }}">Add User</a>
+                        </div>
+                    </div>
+                </form>
             </div>
 
 
@@ -59,6 +95,10 @@
                         @endforelse
                     </tbody>
                 </table>
+
+            </div>
+            <div class="mt-3">
+                {{ $details->appends(request()->query())->links('vendor.pagination.bootstrap-5') }}
             </div>
         </div>
 

@@ -113,7 +113,7 @@
                         <!--begin::Left-->
                         <div class="d-flex align-items-center">
                             <!--begin::Mega Menu Toggler-->
-                            <button class="btn btn-icon btn-accent me-3 me-lg-6" id="kt_aside_toggler">
+                            <button class="d-none btn btn-icon btn-accent me-3 me-lg-6" id="kt_aside_toggler">
                                 <!--begin::Svg Icon | path: icons/stockholm/Text/Article.svg-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -170,8 +170,10 @@
                                             </span>
                                         </div>
                                         <div class="">
-                                            <span class="text-white fw-bolder fs-4">Hello, {{ auth()->user()->name }}</span>
-                                            <span class="text-white fw-bold fs-7 d-block">{{ auth()->user()->roles->pluck('name')[0] ?? 'N/a' }}</span>
+                                            <span class="text-white fw-bolder fs-4">Hello,
+                                                {{ auth()->user()->name }}</span>
+                                            <span
+                                                class="text-white fw-bold fs-7 d-block">{{ auth()->user()->roles->pluck('name')[0] ?? 'N/a' }}</span>
                                         </div>
                                     </div>
                                     <!--begin::Row-->
@@ -305,8 +307,10 @@
         $('#kt_aside_toggler').click(function() {
             $('div#kt_aside').addClass('translateInWindow').removeClass('translateFromWindow')
             $('.aside-primary-disabled.aside-secondary-enabled.aside-fixed .wrapper').removeClass('pl-0')
+            $(this).addClass('d-none')
         })
         $('.dismiss__sidebar').click(function() {
+            $('#kt_aside_toggler').toggleClass('d-none')
             $('div#kt_aside').addClass('translateFromWindow').removeClass('translateInWindow')
             $('.aside-primary-disabled.aside-secondary-enabled.aside-fixed .wrapper').toggleClass('pl-0')
         })
