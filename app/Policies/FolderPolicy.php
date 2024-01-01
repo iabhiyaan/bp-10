@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Folder;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class FolderPolicy
 {
@@ -21,7 +20,7 @@ class FolderPolicy
      */
     public function view(User $user, Folder $folder): bool
     {
-        if ($user->can('view-folders')) {
+        if ($user->can(permissionConstant()::FOLDERS['view-folders'])) {
             return true;
         }
     }
@@ -31,7 +30,7 @@ class FolderPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->can('alter-folders')) {
+        if ($user->can(permissionConstant()::FOLDERS['alter-folders'])) {
             return true;
         }
     }
@@ -41,7 +40,7 @@ class FolderPolicy
      */
     public function update(User $user, Folder $folder): bool
     {
-        if ($user->can('alter-folders')) {
+        if ($user->can(permissionConstant()::FOLDERS['alter-folders'])) {
             return true;
         }
     }
@@ -51,7 +50,7 @@ class FolderPolicy
      */
     public function delete(User $user, Folder $folder): bool
     {
-        if ($user->can('delete-folders')) {
+        if ($user->can(permissionConstant()::FOLDERS['delete-folders'])) {
             return true;
         }
     }

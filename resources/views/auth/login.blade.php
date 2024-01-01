@@ -5,10 +5,7 @@
         @csrf
         <!--begin::Title-->
         <div class="pb-5 pb-lg-15">
-            <h3 class="fw-bolder text-dark display-6">Welcome to Start</h3>
-            <div class="text-muted fw-bold fs-3">New Here?
-                <a href="#" class="text-primary fw-bolder" id="kt_login_signin_form_singup_button">Create Account</a>
-            </div>
+            <h3 class="fw-bolder text-dark display-6">Login</h3>
         </div>
         <!--begin::Title-->
         <!--begin::Form group-->
@@ -23,8 +20,6 @@
         <div class="fv-row mb-10">
             <div class="d-flex justify-content-between mt-n5">
                 <label class="form-label fs-6 fw-bolder text-dark pt-5">Password</label>
-                <a href="#" class="text-primary fs-6 fw-bolder text-hover-primary pt-5"
-                   id="kt_login_signin_form_password_reset_button">Forgot Password ?</a>
             </div>
             <input class="form-control form-control-lg form-control-solid" type="password" name="password"
                    autocomplete="off"/>

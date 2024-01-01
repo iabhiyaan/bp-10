@@ -3,7 +3,7 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
 <head>
     <meta charset="utf-8"/>
-    <title>Start Theme | Keenthemes</title>
+    <title>Admin Dashboard</title>
     <meta name="description"
           content="Check out all the features of the Start admin panel. A large number of templates, components and widgets."/>
     <meta name="keywords"
@@ -29,19 +29,6 @@
     <div class="d-flex flex-column flex-lg-row flex-column-fluid" id="kt_login">
         <!--begin::Aside-->
         <div class="d-flex flex-column flex-lg-row-auto bg-primary w-lg-600px pt-15 pt-lg-0">
-            <!--begin::Aside Top-->
-            <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15 text-center">
-                <!--begin::Aside Logo-->
-                <a href="/index/admin-2.html" class="mb-6">
-                    <img alt="Logo" src="/assets/admin/media/logos/logo-default.svg" class="h-75px"/>
-                </a>
-                <!--end::Aside Logo-->
-                <!--begin::Aside Subtitle-->
-                <h3 class="fw-bolder fs-2x text-white lh-lg">Discover Start
-                    <br/>with great build tools</h3>
-                <!--end::Aside Subtitle-->
-            </div>
-            <!--end::Aside Top-->
             <!--begin::Aside Bottom-->
             <div
                 class="d-flex flex-row-fluid bgi-size-contain bgi-no-repeat bgi-position-y-bottom bgi-position-x-center min-h-350px"

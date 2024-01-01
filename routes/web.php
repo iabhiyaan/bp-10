@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FolderController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PasswordResetController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,7 +28,7 @@ Route::group([], function () {
     Route::post('update-password', [PasswordResetController::class, 'updatePassword'])->name('updatePassword');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => [ 'auth:super-admin',]], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:super-admin', 'role:system_admin']], function () {
     Route::get('logout', [LoginController::class, 'admin__logout'])->name('admin.logout');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('folder', FolderController::class);
